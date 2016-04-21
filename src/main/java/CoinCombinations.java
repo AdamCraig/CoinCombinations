@@ -4,13 +4,28 @@ import java.util.HashMap;
   public class CoinCombinations {
     public static String changeMaker (Integer change){
       String changeMade = "";
-      HashMap<Integer, String> coin = new HashMap<Integer, String>();
-      coin.put(25,"quarter");
-      coin.put(10,"dime");
-      coin.put(5,"nickel");
-      coin.put(1,"penny");
+      Integer quartersDispensed = 0;
+      Integer dimesDispensed = 0;
+      Integer nickelsDispensed = 0;
+      Integer penniesDispensed = 0;
 
-      changeMade = coin.get(change);
+      while (change > 0) {
+        if (change - 25 >= 0) {
+          change -= 25;
+          quartersDispensed++;
+        } else if (change - 10 >= 0) {
+          change -= 10;
+          dimesDispensed++;
+        } else if (change - 5 >= 0) {
+          change -= 5;
+          nickelsDispensed++;
+        } else if (change - 1 >= 0) {
+          change -= 1;
+          penniesDispensed++;
+        }
+      }
+
+      changeMade = quartersDispensed + " quarter(s). " + dimesDispensed + " dime(s). " + nickelsDispensed + " nickel(s). " + penniesDispensed + " pennie(s). ";
 
       return changeMade;
 
